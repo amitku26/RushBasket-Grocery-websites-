@@ -56,7 +56,7 @@ const AddItemPage = () => {
       });
 
       const res = await axios.post(
-        "http://localhost:4000/api/items",
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/items",
         body,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

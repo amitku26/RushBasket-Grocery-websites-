@@ -74,13 +74,13 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:4000/api/user/register',
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/user/register",
         {
           name: formData.name,
           email: formData.email,
           password: formData.password,
         },
-        { headers: { 'Content-Type': 'application/json' } }
+        { headers: { "Content-Type": "application/json" } }
       );
       if (res.data.success) {
         setShowToast(true);

@@ -19,9 +19,10 @@ const ItemsHome = () => {
     
   //Fetch Products
   useEffect(() => {
-    axios.get('http://localhost:4000/api/items')
-      .then(res => {
-        const normalized = res.data.map(p => ({
+    axios
+      .get("https://rushbasket-grocery-websites-backend.onrender.com/api/items")
+      .then((res) => {
+        const normalized = res.data.map((p) => ({
           ...p,
           id: p._id,
         }));

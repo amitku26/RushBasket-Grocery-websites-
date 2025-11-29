@@ -26,12 +26,14 @@ const ListItemsPage = () => {
   useEffect(() => {
     const loadItems = async () => {
       try {
-        const { data } = await axios.get("http://localhost:4000/api/items");
+        const { data } = await axios.get(
+          "https://rushbasket-grocery-websites-backend.onrender.com/api/items"
+        );
 
         const updatedItems = data.map((item) => ({
           ...item,
           imageUrl: item.imageUrl
-            ? `http://localhost:4000${item.imageUrl}`
+            ? `https://rushbasket-grocery-websites-backend.onrender.com${item.imageUrl}`
             : null,
         }));
 
@@ -73,7 +75,9 @@ const ListItemsPage = () => {
     if (!window.confirm("Delete this product?")) return;
 
     try {
-      await axios.delete(`http://localhost:4000/api/items/${id}`);
+      await axios.delete(
+        `https://rushbasket-grocery-websites-backend.onrender.com/api/items/${id}`
+      );
 
       const remaining = items.filter((item) => item._id !== id);
       setItems(remaining);

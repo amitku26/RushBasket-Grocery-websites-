@@ -12,7 +12,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const BACKEND_URL = "http://localhost:4000";
+const BACKEND_URL = "https://rushbasket-grocery-websites-backend.onrender.com";
 
 /*  DEFAULT FALLBACK DATA (used before API loads or if API fails) */
 const groceryData = [

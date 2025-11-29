@@ -44,10 +44,13 @@ export const CartProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/cart", {
-        ...getAuthHeader(),
-        withCredentials: true,
-      });
+      const { data } = await axios.get(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/cart",
+        {
+          ...getAuthHeader(),
+          withCredentials: true,
+        }
+      );
       const rawItems = Array.isArray(data)
         ? data
         : Array.isArray(data.items)
@@ -64,7 +67,7 @@ export const CartProvider = ({ children }) => {
   const refreshCart = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/cart",
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/cart",
         getAuthHeader()
       );
       const rawItems = Array.isArray(data)
@@ -81,7 +84,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = async (productId, quantity = 1) => {
     try {
       await axios.post(
-        "http://localhost:4000/api/cart",
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/cart",
         { productId, quantity },
         getAuthHeader()
       );
@@ -94,7 +97,7 @@ export const CartProvider = ({ children }) => {
   const updateQuantity = async (lineId, quantity) => {
     try {
       await axios.put(
-        `http://localhost:4000/api/cart/${lineId}`,
+        `https://rushbasket-grocery-websites-backend.onrender.com/api/cart/${lineId}`,
         { quantity },
         getAuthHeader()
       );
@@ -107,7 +110,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = async (lineId) => {
     try {
       await axios.delete(
-        `http://localhost:4000/api/cart/${lineId}`,
+        `https://rushbasket-grocery-websites-backend.onrender.com/api/cart/${lineId}`,
         getAuthHeader()
       );
       await refreshCart();
@@ -119,7 +122,7 @@ export const CartProvider = ({ children }) => {
   const clearCart = async () => {
     try {
       await axios.post(
-        "http://localhost:4000/api/cart/clear",
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/cart/clear",
         {},
         getAuthHeader()
       );

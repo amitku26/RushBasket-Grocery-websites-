@@ -20,7 +20,9 @@ const CartPage = () => {
      item.name ?? item.product?.name ?? "Unnamed item";
    const getItemImage = (item) => {
      const path = item.image ?? item.product?.imageUrl ?? "";
-     return path ? `http://localhost:4000${path}` : "";
+     return path
+       ? `https://rushbasket-grocery-websites-backend.onrender.com${path}`
+       : "";
   };
   
   /// SubTotal 

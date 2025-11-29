@@ -95,12 +95,17 @@ const Checkout = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:4000/api/orders", order, {
-        headers: {
-          "Content-Type": "application/json",
-          ...getAuthHeader(),
-        },
-      });
+      const token = localStorage.getItem("authtoken");
+      const res = await axios.post(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/orders",
+        order,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            ...(token && { Authorization: `Bearer ${token}` }),
+          },
+        }
+      );
 
       if (res.data.checkoutUrl) {
         window.location.href = res.data.checkoutUrl;

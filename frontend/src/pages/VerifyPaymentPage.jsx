@@ -25,18 +25,22 @@ const VerifyPaymentPage = () => {
             setStatusMsg('No session Id Provided.');
             return;
         }
-        axios.get('http://localhost:4000/api/orders/confirm', {
-            params: { session_id },
-            headers: token ? { Authorization: `Bearer ${token}` } : {},
-        })
-            .then(() => {
-                clearCart();
-                navigate('/myorders', { replace: true });
-            })
-            .catch((error) => {
-                console.error('Confirmation error:', error)
-                setStatusMsg('There was an error confirming your payment.');
-            });
+        axios
+          .get(
+            "https://rushbasket-grocery-websites-backend.onrender.com/api/orders/confirm",
+            {
+              params: { session_id },
+              headers: token ? { Authorization: `Bearer ${token}` } : {},
+            }
+          )
+          .then(() => {
+            clearCart();
+            navigate("/myorders", { replace: true });
+          })
+          .catch((error) => {
+            console.error("Confirmation error:", error);
+            setStatusMsg("There was an error confirming your payment.");
+          });
     }, [search, clearCart, navigate]);
 
   return (

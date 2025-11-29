@@ -27,7 +27,9 @@ const MyOrders = () => {
   //Fetching the orders
   const fetchAndFilterOrders = async () => {
     try {
-      const resp = await axios.get("http://localhost:4000/api/orders");
+      const resp = await axios.get(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/orders"
+      );
       const allOrders = resp.data;
 
       const mine = allOrders.filter(

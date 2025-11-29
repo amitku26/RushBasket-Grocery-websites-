@@ -405,7 +405,7 @@ const OrdersPage = () => {
                         >
                           {item.imageUrl ? (
                             <img
-                              src={`http://localhost:4000${item.imageUrl}`}
+                              src={`https://rushbasket-grocery-websites-backend.onrender.com${item.imageUrl}`}
                               alt={item.name}
                               className={styles.modalOrderImage}
                             />
@@ -472,7 +472,11 @@ const OrdersPage = () => {
 
                       <div className=" flex justify-between">
                         <span className=" text-gray-600">Payment Status:</span>
-                        <span className={styles.paymentBadge(selectedOrder.paymentStatus)}>
+                        <span
+                          className={styles.paymentBadge(
+                            selectedOrder.paymentStatus
+                          )}
+                        >
                           {selectedOrder.paymentStatus}
                         </span>
                       </div>
@@ -485,11 +489,19 @@ const OrdersPage = () => {
             {/* Footer Modal */}
             <div className={styles.modalFooter}>
               <div className=" flex justify-end space-x-3">
-                <button className={styles.modalFooterButton} onClick={closeModal}>
-                  Close 
+                <button
+                  className={styles.modalFooterButton}
+                  onClick={closeModal}
+                >
+                  Close
                 </button>
 
-                <button onClick={closeModal} className={styles.modalFooterPrimaryButton}>Save Changes</button>
+                <button
+                  onClick={closeModal}
+                  className={styles.modalFooterPrimaryButton}
+                >
+                  Save Changes
+                </button>
               </div>
             </div>
           </div>
