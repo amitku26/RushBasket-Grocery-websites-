@@ -15,7 +15,7 @@ const uploadPath = path.join(process.cwd(), "uploads");
 
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
-  console.log("📁 'uploads' folder created automatically.");
+  console.log(" 'uploads' folder created automatically.");
 }
 
 /* Multer Storage */
