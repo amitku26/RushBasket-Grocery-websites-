@@ -21,7 +21,7 @@ const CartPage = () => {
    const getItemImage = (item) => {
      const path = item.image ?? item.product?.imageUrl ?? "";
      return path
-       ? `https://rushbasket-grocery-websites-backend.onrender.com${path}`
+       ? `https://rushbasket-grocery-websites-backend.onrender.com/${path}`
        : "";
   };
   

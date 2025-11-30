@@ -20,7 +20,9 @@ const ItemsHome = () => {
   //Fetch Products
   useEffect(() => {
     axios
-      .get("https://rushbasket-grocery-websites-backend.onrender.com/api/items")
+      .get(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/items"
+      )
       .then((res) => {
         const normalized = res.data.map((p) => ({
           ...p,
