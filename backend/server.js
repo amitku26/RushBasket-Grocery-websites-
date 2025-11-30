@@ -89,7 +89,7 @@ const allowedOrigins = [
   "https://rushbasket-grocery-websites-admin.onrender.com",
 ];
 
-// ✅ CORS FIX
+//  CORS
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -105,8 +105,8 @@ app.use(
   })
 );
 
-// ✅ Allow preflight OPTIONS request
-app.options("*", cors());
+//  Allow preflight OPTIONS request
+//app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
