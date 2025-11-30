@@ -26,7 +26,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
           const allowedOrigins = [
-            "https://localhost:5173",
+            "https://rushbasket-grocery-websites-frontend.onrender.com",
             "https://rushbasket-grocery-websites-admin.onrender.com",
           ];
           if (!origin || allowedOrigins.includes(origin)) {
