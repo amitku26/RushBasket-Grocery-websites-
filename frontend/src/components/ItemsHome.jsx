@@ -211,10 +211,11 @@ const ItemsHome = () => {
               searchProducts.map((product) => {
                 const qty = getQuantity(product.id);
                 return (
-                  <div key={product.id}
-                    className={itemsHomeStyles.productCard}>
+                  <div key={product.id} className={itemsHomeStyles.productCard}>
                     <div className={itemsHomeStyles.imageContainer}>
-                      <img src={`http://localhost:4000${product.imageUrl}`} alt={product.name}
+                      <img
+                        src={`https://rushbasket-grocery-websites-backend.onrender.com${product.imageUrl}`}
+                        alt={product.name}
                         className={itemsHomeStyles.productImage}
                         onError={(e) => {
                           e.target.onerror = null;
@@ -222,47 +223,54 @@ const ItemsHome = () => {
                           <div class= 'flex items-center justify-center w-full h-full bg-gray-200>
                           <span class= 'text-gray-500 text-sm>No Image</span>
                           </div>`;
-                        }} />
+                        }}
+                      />
                     </div>
-                    
+
                     <div className={itemsHomeStyles.productContent}>
                       <h3 className={itemsHomeStyles.productTitle}>
                         {product.name}
                       </h3>
                       <div className={itemsHomeStyles.priceContainer}>
-                        <div >
+                        <div>
                           <p className={itemsHomeStyles.currentPrice}>
                             ${product.price.toFixed(2)}
                           </p>
                           <span className={itemsHomeStyles.oldPrice}>
-                            ${product.price * 1.2.toFixed(2)}
+                            ${product.price * (1.2).toFixed(2)}
                           </span>
                         </div>
 
                         {/* Add Controls */}
                         {qty === 0 ? (
-                          <button onClick={() => handleIncrease(product)}
-                            className={itemsHomeStyles.addButton}>
+                          <button
+                            onClick={() => handleIncrease(product)}
+                            className={itemsHomeStyles.addButton}
+                          >
                             <FaShoppingCart className="mr-2" />
                             Add
                           </button>
                         ) : (
-                            <div className={itemsHomeStyles.quantityControls}>
-                              <button onClick={() => handleDecrease(product)}
-                                className={itemsHomeStyles.quantityButton}>
-                                <FaMinus/>
-                                </button>
-                              <span className="font-bold">{qty}</span>
-                              <button onClick={() => handleDecrease(product)}
-                                className={itemsHomeStyles.quantityButton}>
-                              <FaPlus/>
-                              </button>
-                            </div>
+                          <div className={itemsHomeStyles.quantityControls}>
+                            <button
+                              onClick={() => handleDecrease(product)}
+                              className={itemsHomeStyles.quantityButton}
+                            >
+                              <FaMinus />
+                            </button>
+                            <span className="font-bold">{qty}</span>
+                            <button
+                              onClick={() => handleDecrease(product)}
+                              className={itemsHomeStyles.quantityButton}
+                            >
+                              <FaPlus />
+                            </button>
+                          </div>
                         )}
                       </div>
                     </div>
                   </div>
-                )
+                );
               })
             ) : (
                 <div className={itemsHomeStyles.noProducts}>

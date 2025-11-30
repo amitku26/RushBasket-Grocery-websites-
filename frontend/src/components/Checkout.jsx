@@ -330,7 +330,7 @@ const Checkout = () => {
                     <div className={checkoutStyles.cartImage}>
                       {item.imageUrl ? (
                         <img
-                          src={`http://localhost:4000${item.imageUrl}`}
+                          src={`https://rushbasket-grocery-websites-backend.onrender.com${item.imageUrl}`}
                           alt={item.name}
                           className="w-full h-full object-cover rounded"
                           onError={(e) => {
