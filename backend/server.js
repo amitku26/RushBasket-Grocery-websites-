@@ -27,7 +27,7 @@ app.use(
     origin: (origin, callback) => {
           const allowedOrigins = [
             "https://localhost:5173",
-            "https://localhost:5174",
+            "https://rushbasket-grocery-websites-admin.onrender.com",
           ];
           if (!origin || allowedOrigins.includes(origin)) {
               callback(null, true);
