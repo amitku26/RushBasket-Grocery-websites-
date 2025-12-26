@@ -93,8 +93,7 @@ const Footer = () => {
               {["Home", "Items", "Contact"].map((item, idx) => (
                 <li key={idx}>
                   <a
-                    href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-
+                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                     className={footerStyles.linkItem}
                   >
                     <span className={footerStyles.linkBullet}></span>
@@ -175,11 +174,13 @@ const Footer = () => {
             Major Payment Method
           </h4>
           <div className={footerStyles.paymentMethods}>
-            {[FaCcVisa, FaCcMastercard, FaCcPaypal, FaCcAmex, FaApplePay].map((Icon, idx) => (
-              <div key={idx} className={footerStyles.paymentItem}>
-                <Icon className={footerStyles.paymentIcon} />
-              </div>
-            ))}
+            {[FaCcVisa, FaCcMastercard, FaCcPaypal, FaCcAmex, FaApplePay].map(
+              (Icon, idx) => (
+                <div key={idx} className={footerStyles.paymentItem}>
+                  <Icon className={footerStyles.paymentIcon} />
+                </div>
+              )
+            )}
           </div>
         </div>
 
@@ -187,15 +188,14 @@ const Footer = () => {
         <div className={footerStyles.attribution}>
           <div className={footerStyles.attributionBadge}>
             <div className={footerStyles.hexagonContainer}>
-
               <div className={footerStyles.hexagon}></div>
 
               <div className={footerStyles.hexagonInner}>
-                <div className={ footerStyles.hexagonInnerShape} />
+                <div className={footerStyles.hexagonInnerShape} />
               </div>
             </div>
             <span className={footerStyles.attributionText}>
-              Designed By {'Amit'}
+              Designed By {"Amit"}
             </span>
           </div>
         </div>

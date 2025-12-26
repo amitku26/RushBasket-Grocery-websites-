@@ -7,8 +7,8 @@ const Cart = () => {
   return (
     <div>
       <Navbar />
-      <CartPage/>
-      <Footer/>
+      <CartPage />
+      <Footer />
     </div>
   );
 };
