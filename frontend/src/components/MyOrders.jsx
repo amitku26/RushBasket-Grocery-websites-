@@ -16,7 +16,8 @@ import {
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
-  const [filteredOrders, setFilteredOrders] = useState([]);
+  console.log("Orders:", orders);
+  // const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -27,14 +28,13 @@ const MyOrders = () => {
   //Fetching the orders
   const fetchAndFilterOrders = async () => {
     try {
-      const resp = await axios.get(
-        "https://rushbasket-grocery-websites-backend.onrender.com/api/orders"
-      );
+      const resp = await axios.get("https://rushbasket-grocery-websites-backend.onrender.com/api/orders");
       const allOrders = resp.data;
-
       const mine = allOrders.filter(
-        (o) => o.customer?.email?.toLowerCase() === userEmail.toLowerCase()
+        (curr, index, arr) =>
+          curr.customer.email.toLowerCase() == userEmail.toLowerCase()
       );
+      console.log(mine);
       setOrders(mine);
     } catch (error) {
       console.error("Error fetching orders:", error);
@@ -116,7 +116,7 @@ const MyOrders = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-emerald-700/50">
-                {filteredOrders.length === 0 ? (
+                {orders.length === 0 ? (
                   <tr>
                     <td colSpan="6" className="py-12 text-center">
                       <div className="flex flex-col items-center justify-center">
@@ -131,7 +131,7 @@ const MyOrders = () => {
                     </td>
                   </tr>
                 ) : (
-                  filteredOrders.map((order) => (
+                  orders.map((order) => (
                     <tr key={order._id} className={ordersPageStyles.tableRow}>
                       <td
                         className={`${ordersPageStyles.tableCell} font-medium text-emerald-200`}
@@ -277,7 +277,7 @@ const MyOrders = () => {
                         >
                           {item.imageUrl ? (
                             <img
-                              src={`http://localhost:4000${item.imageUrl}`}
+                              src={`https://rushbasket-grocery-websites-backend.onrender.com${item.imageUrl}`}
                               alt={item.name}
                               className="w-16 h-16 object-cover rounded-lg mr-4"
                             />
@@ -402,7 +402,10 @@ const MyOrders = () => {
             {/* Modal Footer */}
             <div className={ordersPageStyles.modalFooter}>
               <div className="flex justify-end">
-                <button onClick={closeModal} className={ordersPageStyles.closeButton}>
+                <button
+                  onClick={closeModal}
+                  className={ordersPageStyles.closeButton}
+                >
                   Close
                 </button>
               </div>

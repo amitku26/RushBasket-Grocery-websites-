@@ -26,13 +26,10 @@ const VerifyPaymentPage = () => {
             return;
         }
         axios
-          .get(
-            "https://rushbasket-grocery-websites-backend.onrender.com/api/orders/confirm",
-            {
-              params: { session_id },
-              headers: token ? { Authorization: `Bearer ${token}` } : {},
-            }
-          )
+          .get("https://rushbasket-grocery-websites-backend.onrender.com/api/orders/confirm", {
+            params: { session_id },
+            headers: token ? { Authorization: `Bearer ${token}` } : {},
+          })
           .then(() => {
             clearCart();
             navigate("/myorders", { replace: true });

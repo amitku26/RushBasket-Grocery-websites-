@@ -35,7 +35,9 @@ const OrdersPage = () => {
   // Fetch all orders
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/orders");
+      const { data } = await axios.get(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/orders"
+      );
       setOrders(data);
       setFilteredOrders(data);
     } catch (error) {
@@ -72,9 +74,12 @@ const OrdersPage = () => {
   // Update order status
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      await axios.put(`http://localhost:4000/api/orders/${orderId}`, {
-        status: newStatus,
-      });
+      await axios.put(
+        `https://rushbasket-grocery-websites-backend.onrender.com/api/orders/${orderId}`,
+        {
+          status: newStatus,
+        }
+      );
 
       setOrders((prev) =>
         prev.map((o) => (o._id === orderId ? { ...o, status: newStatus } : o))

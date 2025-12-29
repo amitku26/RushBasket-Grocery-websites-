@@ -360,7 +360,6 @@
 
 // export default Item;
 
-
 import React, { useEffect, useState } from "react";
 import { useCart } from "../CartContext";
 import { itemsPageStyles } from "../assets/dummyStyles";
@@ -418,7 +417,7 @@ const ProductCard = ({ item }) => {
   /* -----------------------------
      ONLY CLOUDINARY IMAGE USED
   ------------------------------ */
-  const imgSrc = item.image || item.imageUrl || "/placeholder.png";
+  // const imgSrc = item.image || item.imageUrl || "/placeholder.png";
 
   return (
     <div className={itemsPageStyles.productCard}>

@@ -28,10 +28,9 @@ const Checkout = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // ✅ Get token safely
   const getAuthHeader = () => {
     const token = localStorage.getItem("authToken");
-    return token ? { Authorization: `Bearer ${token}` } : {};
+    return token ? token : {};
   };
 
   const handleChange = (e) => {
@@ -66,6 +65,8 @@ const Checkout = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let token = getAuthHeader();
+    console.log("Auth Token:", token);
     if (!validateForm()) return;
 
     if (cart.length === 0) {
@@ -95,17 +96,12 @@ const Checkout = () => {
     };
 
     try {
-      const token = localStorage.getItem("authtoken");
-      const res = await axios.post(
-        "https://rushbasket-grocery-websites-backend.onrender.com/api/orders",
-        order,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            ...(token && { Authorization: `Bearer ${token}` }),
-          },
-        }
-      );
+      const res = await axios.post("https://rushbasket-grocery-websites-backend.onrender.com/api/orders", order, {
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+      });
 
       if (res.data.checkoutUrl) {
         window.location.href = res.data.checkoutUrl;
@@ -330,7 +326,7 @@ const Checkout = () => {
                     <div className={checkoutStyles.cartImage}>
                       {item.imageUrl ? (
                         <img
-                          src={`https://rushbasket-grocery-websites-backend.onrender.com${item.imageUrl}`}
+                          src={`${item.imageUrl}`}
                           alt={item.name}
                           className="w-full h-full object-cover rounded"
                           onError={(e) => {
