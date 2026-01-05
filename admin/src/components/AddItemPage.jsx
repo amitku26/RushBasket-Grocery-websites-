@@ -77,9 +77,13 @@ const AddItemPage = () => {
         image: formData.image,
       };
 
-      const res = await axios.post("https://rushbasket-grocery-websites-backend.onrender.com/api/items", body, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await axios.post(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/items",
+        body,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       alert("Product added successfully!");
       setFormData(initialFormState);

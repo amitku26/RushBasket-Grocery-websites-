@@ -12,7 +12,7 @@
 // import { Link, useLocation, useNavigate } from "react-router-dom";
 // import axios from "axios";
 
-// const BACKEND_URL = "https://rushbasket-grocery-websites-backend.onrender.com";
+// const BACKEND_URL = "https://localhost:4000";
 
 // /*  DEFAULT FALLBACK DATA (used before API loads or if API fails) */
 // const groceryData = [
@@ -417,7 +417,7 @@ const ProductCard = ({ item }) => {
   /* -----------------------------
      ONLY CLOUDINARY IMAGE USED
   ------------------------------ */
-  // const imgSrc = item.image || item.imageUrl || "/placeholder.png";
+  const imgSrc = item.image || item.imageUrl || "/placeholder.png";
 
   return (
     <div className={itemsPageStyles.productCard}>

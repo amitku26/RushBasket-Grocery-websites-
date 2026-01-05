@@ -34,7 +34,6 @@ const normalizeItems = (rawItems = []) => {
     .filter((item) => item.id != null);
 };
 
-
 // const normalizeItems = (rawItems = []) => {
 //   return rawItems.map((item) => ({
 //     id: item._id || item.id,
@@ -56,10 +55,13 @@ export const CartProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
-      const { data } = await axios.get("https://rushbasket-grocery-websites-backend.onrender.com/api/cart", {
-        ...getAuthHeader(),
-        withCredentials: true,
-      });
+      const { data } = await axios.get(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/cart",
+        {
+          ...getAuthHeader(),
+          withCredentials: true,
+        }
+      );
       const rawItems = Array.isArray(data)
         ? data
         : Array.isArray(data.items)
@@ -106,7 +108,7 @@ export const CartProvider = ({ children }) => {
   // const addToCart = async (product, quantity = 1) => {
   //   try {
   //     await axios.post(
-  //       "https://rushbasket-grocery-websites-backend.onrender.com/api/cart",
+  //       "https://localhost:4000/api/cart",
   //       {
   //         productId: product._id,
   //         name: product.name,
@@ -122,7 +124,6 @@ export const CartProvider = ({ children }) => {
   //     console.error("Error adding to cart:", error);
   //   }
   // };
-
 
   const updateQuantity = async (lineId, quantity) => {
     try {
@@ -167,25 +168,25 @@ export const CartProvider = ({ children }) => {
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{
-    cart,
-    loading,
-    cartCount,
-    addToCart,
-    updateQuantity,
-    removeFromCart,
-    clearCart,
-    getCartTotal,
-  }}>
-  {children}
-  </CartContext.Provider>
-  )
+    <CartContext.Provider
+      value={{
+        cart,
+        loading,
+        cartCount,
+        addToCart,
+        updateQuantity,
+        removeFromCart,
+        clearCart,
+        getCartTotal,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 };
 
 export const useCart = () => {
   const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be inside CartProvider');
-  return ctx
+  if (!ctx) throw new Error("useCart must be inside CartProvider");
+  return ctx;
 };
-
-

@@ -319,4 +319,3 @@ const ItemsHome = () => {
 };
 
 export default ItemsHome;
-

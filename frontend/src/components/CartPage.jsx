@@ -18,7 +18,9 @@ const CartPage = () => {
     item.name ?? item.product?.name ?? "Unnamed item";
   const getItemImage = (item) => {
     const path = item.image ?? item.product?.imageUrl ?? "";
-    return path ? `https://rushbasket-grocery-websites-backend.onrender.com${path}` : "";
+    return path
+      ? `https://rushbasket-grocery-websites-backend.onrender.com${path}`
+      : "";
   };
 
   /// SubTotal
@@ -83,10 +85,11 @@ const CartPage = () => {
           <div className={cartStyles.cartItemsSection}>
             <div className={cartStyles.cartItemsGrid}>
               {cart.map((item) => {
+                console.log(item);
                 const id = item.id;
                 const name = getItemName(item);
                 const price = getItemPrice(item);
-                const img = getItemImage(item);
+                const img = item.imageUrl;
 
                 return (
                   <div key={id} className={cartStyles.cartItemCard}>

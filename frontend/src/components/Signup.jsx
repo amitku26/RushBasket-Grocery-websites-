@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signupStyles } from "../assets/dummyStyles";
-import axios from 'axios';
+import axios from "axios";
 import {
   FaArrowLeft,
   FaCheck,
@@ -21,7 +21,7 @@ const Signup = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { apiError, setApiError } = useState('');
+  const { apiError, setApiError } = useState("");
   const [showToast, setShowToast] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -84,22 +84,21 @@ const Signup = () => {
       );
       if (res.data.success) {
         setShowToast(true);
-      }
-      else {
-        setApiError(res.data.message || 'Register failed')
+      } else {
+        setApiError(res.data.message || "Register failed");
       }
     } catch (error) {
       if (error.response && error.response.data) {
         setApiError(error.response.data.message);
       } else {
-        setApiError('Server Error');
+        setApiError("Server Error");
       }
     }
-  }
+  };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(v => !v);
-  }
+    setShowPassword((v) => !v);
+  };
 
   // // Form Submit
   // const handleSubmit = (e) => {

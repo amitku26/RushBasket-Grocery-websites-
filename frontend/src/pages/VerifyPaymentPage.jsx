@@ -1,50 +1,52 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { useCart } from "../CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const VerifyPaymentPage = () => {
-    
-    const [statusMsg, setStatusMsg] = useState('Verifying Payment...');
-    const { clearCart } = useCart();
-    const navigate = useNavigate();
-    const { search } = useLocation();
+  const [statusMsg, setStatusMsg] = useState("Verifying Payment...");
+  const { clearCart } = useCart();
+  const navigate = useNavigate();
+  const { search } = useLocation();
 
-    useEffect(() => {
-        const params = new URLSearchParams(search);
-        const session_id = params.get('session_id')
-        const payment_status = params.get('payment_status');
-        const token = localStorage.getItem('authToken');
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const session_id = params.get("session_id");
+    const payment_status = params.get("payment_status");
+    const token = localStorage.getItem("authToken");
 
-        if (payment_status === 'cancel') {
-            navigate('/checkout', { replace: true });
-            return;
+    if (payment_status === "cancel") {
+      navigate("/checkout", { replace: true });
+      return;
+    }
+
+    if (!session_id) {
+      setStatusMsg("No session Id Provided.");
+      return;
+    }
+    axios
+      .get(
+        "https://rushbasket-grocery-websites-backend.onrender.com/api/orders/confirm",
+        {
+          params: { session_id },
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
         }
-
-        if (!session_id) {
-            setStatusMsg('No session Id Provided.');
-            return;
-        }
-        axios
-          .get("https://rushbasket-grocery-websites-backend.onrender.com/api/orders/confirm", {
-            params: { session_id },
-            headers: token ? { Authorization: `Bearer ${token}` } : {},
-          })
-          .then(() => {
-            clearCart();
-            navigate("/myorders", { replace: true });
-          })
-          .catch((error) => {
-            console.error("Confirmation error:", error);
-            setStatusMsg("There was an error confirming your payment.");
-          });
-    }, [search, clearCart, navigate]);
+      )
+      .then(() => {
+        clearCart();
+        navigate("/myorders", { replace: true });
+      })
+      .catch((error) => {
+        console.error("Confirmation error:", error);
+        setStatusMsg("There was an error confirming your payment.");
+      });
+  }, [search, clearCart, navigate]);
 
   return (
-      <div className='min-h-screen flex items-center justify-center text-white'>
-          <p>{statusMsg}</p>
+    <div className="min-h-screen flex items-center justify-center text-white">
+      <p>{statusMsg}</p>
     </div>
-  )
-}
+  );
+};
 
-export default VerifyPaymentPage
+export default VerifyPaymentPage;
