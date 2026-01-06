@@ -1,62 +1,6 @@
-// import { Product } from "../models/productModel.js";
-
-// // Get Products
-// export const getProducts = async (req, res, next) => {
-//   try {
-//     const products = await Product.find().sort({ createdAt: -1 });
-//     res.json(products);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// // Create Product
-// export const createProduct = async (req, res, next) => {
-//   console.log("called");
-//   try {
-//     const { name, description, category, oldPrice, price } = req.body;
-//     console.log(req.body);
-
-//     if (!name || !category || !price) {
-//       return res.status(400).json({ message: "Required fields missing" });
-//     }
-
-//     const filename = req.file?.filename ?? null;
-//     const imageUrl = filename ? `/uploads/${filename}` : null;
-
-//     const product = await Product.create({
-//       name,
-//       description,
-//       category,
-//       oldPrice: Number(oldPrice) || 0,
-//       price: Number(price),
-//       imageUrl,
-//     });
-
-//     res.status(201).json(product);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// // Delete Product
-// export const deleteProduct = async (req, res, next) => {
-//   try {
-//     const deleted = await Product.findByIdAndDelete(req.params.id);
-
-//     if (!deleted) {
-//       return res.status(404).json({ message: "Product not found" });
-//     }
-
-//     res.json({ message: "Product removed" });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 import { Product } from "../models/productModel.js";
 
-// ✅ Get Products
+// Get Products
 export const getProducts = async (req, res, next) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
@@ -66,7 +10,7 @@ export const getProducts = async (req, res, next) => {
   }
 };
 
-// ✅ Create Product (Cloudinary Image)
+// Create Product 
 export const createProduct = async (req, res, next) => {
   try {
     const { name, description, category, oldPrice, price, image } = req.body;
@@ -75,7 +19,6 @@ export const createProduct = async (req, res, next) => {
       return res.status(400).json({ message: "Required fields missing" });
     }
 
-    // 👇 Cloudinary gives direct URL
     const imageUrl = req.file ? req.file.path : "";
 
     const product = await Product.create({
@@ -93,7 +36,7 @@ export const createProduct = async (req, res, next) => {
   }
 };
 
-// ✅ Delete Product
+//  Delete Product
 export const deleteProduct = async (req, res, next) => {
   try {
     const deleted = await Product.findByIdAndDelete(req.params.id);

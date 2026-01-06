@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// CREATE NEW ORDER
+// Create new order
 export const createOrder = async (req, res) => {
   try {
     const { customer, items, paymentMethod, notes, deliveryDate } = req.body;
@@ -27,7 +27,7 @@ export const createOrder = async (req, res) => {
     const orderId = `ORD-${uuidv4()}`;
     let newOrder;
 
-    // ------------------ ONLINE PAYMENT -------------------
+    // ------------------ online payment -------------------
     if (normalizedPM === "Online Payment") {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
@@ -65,7 +65,7 @@ export const createOrder = async (req, res) => {
         .json({ order: newOrder, checkoutUrl: session.url });
     }
 
-    // ------------------ COD PAYMENT -------------------
+    // ------------------ Cod payment -------------------
     newOrder = await Order.create({
       orderId,
       user: req.user?._id || null,
@@ -85,7 +85,7 @@ export const createOrder = async (req, res) => {
   }
 };
 
-// CONFIRM PAYMENT
+// confirm payment
 export const confirmPayment = async (req, res) => {
   try {
     const { session_id } = req.query;
@@ -117,7 +117,7 @@ export const confirmPayment = async (req, res) => {
   }
 };
 
-// GET ALL ORDERS
+// Get all orders
 export const getOrders = async (req, res, next) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 }).lean();
@@ -128,7 +128,7 @@ export const getOrders = async (req, res, next) => {
   }
 };
 
-// GET ORDER BY ID
+// get order by id
 export const getOrderById = async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id).lean();
@@ -141,7 +141,7 @@ export const getOrderById = async (req, res, next) => {
   }
 };
 
-// UPDATE ORDER
+// update order
 export const updateOrder = async (req, res, next) => {
   try {
     const allowed = ["status", "paymentStatus", "deliveryDate", "notes"];
@@ -165,7 +165,7 @@ export const updateOrder = async (req, res, next) => {
   }
 };
 
-// DELETE ORDER
+// Delete order
 export const deleteOrder = async (req, res, next) => {
   try {
     const deleted = await Order.findByIdAndDelete(req.params.id);
