@@ -117,7 +117,7 @@ const Checkout = () => {
         const displayId = createdOrder.orderId || createdOrder._id;
 
         clearCart();
-        alert(`✅ Order placed successfully! Order ID: ${displayId}`);
+        alert(` Order placed successfully! Order ID: ${displayId}`);
         navigate("/");
       } else {
         alert("Order failed. Try again.");
@@ -149,7 +149,7 @@ const Checkout = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* ✅ CUSTOMER FORM */}
+          {/* Customer form */}
           <div className={checkoutStyles.card}>
             <h2 className={checkoutStyles.sectionTitle}>
               <FiUser className="mr-2 text-shadow-amber-300" /> Customer
@@ -253,7 +253,7 @@ const Checkout = () => {
                 />
               </div>
 
-              {/* ✅ Payment */}
+              {/* Payment */}
               <div>
                 <h3 className={checkoutStyles.sectionTitle}>
                   <FiCreditCard className="mr-2 text-emerald-300" /> Payment
@@ -297,7 +297,7 @@ const Checkout = () => {
                 </label>
               </div>
 
-              {/* ✅ Submit */}
+              {/*  Submit */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -313,7 +313,7 @@ const Checkout = () => {
             </form>
           </div>
 
-          {/* ✅ ORDER SUMMARY */}
+          {/* Order Summary */}
           <div className={checkoutStyles.card}>
             <h2 className={checkoutStyles.sectionTitle}>
               <FiPackage className="mr-2 text-emerald-300" /> Order Summary
@@ -361,7 +361,7 @@ const Checkout = () => {
               </div>
             </div>
 
-            {/* ✅ Totals */}
+            {/*  Totals */}
             <div className="border-t border-emerald-700/50 pt-4 space-y-3">
               <div className="flex justify-between">
                 <span className="text-emerald-300">Subtotal</span>
@@ -394,7 +394,7 @@ const Checkout = () => {
           </div>
         </div>
 
-        {/* ✅ Delivery Info */}
+        {/*  Delivery Info */}
         <div className={checkoutStyles.deliveryInfo}>
           <h3 className={checkoutStyles.deliveryTitle}>
             <FiTruck className="mr-2" /> Delivery Information
