@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// hiamit mongodb pswrd
 export const connectDB = async () => {
   await mongoose
     .connect(
