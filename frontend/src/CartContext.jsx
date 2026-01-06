@@ -34,17 +34,6 @@ const normalizeItems = (rawItems = []) => {
     .filter((item) => item.id != null);
 };
 
-// const normalizeItems = (rawItems = []) => {
-//   return rawItems.map((item) => ({
-//     id: item._id || item.id,
-//     productId: item.productId,
-//     name: item.name || item.product?.name,
-//     price: item.price || item.product?.price,
-//     imageUrl: item.imageUrl || item.product?.imageUrl || "", // ✅ Cloudinary stored
-//     quantity: item.quantity,
-//   }));
-// };
-
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -104,26 +93,6 @@ export const CartProvider = ({ children }) => {
       console.error("Error adding to cart:", error);
     }
   };
-
-  // const addToCart = async (product, quantity = 1) => {
-  //   try {
-  //     await axios.post(
-  //       "https://localhost:4000/api/cart",
-  //       {
-  //         productId: product._id,
-  //         name: product.name,
-  //         price: product.price,
-  //         imageUrl: product.imageUrl, // ✅ Cloudinary URL
-  //         quantity,
-  //       },
-  //       getAuthHeader()
-  //     );
-
-  //     await refreshCart();
-  //   } catch (error) {
-  //     console.error("Error adding to cart:", error);
-  //   }
-  // };
 
   const updateQuantity = async (lineId, quantity) => {
     try {
