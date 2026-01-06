@@ -5,14 +5,14 @@ const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_here";
 
 export default async function authMiddleware(req, res, next) {
   try {
-    // 1. Get token from cookies OR authorization header
+    //  Get token from cookies or authorization header
     let token = req.cookies?.token;
 
     if (!token && req.headers.authorization?.startsWith("Bearer ")) {
       token = req.headers.authorization.split(" ")[1];
     }
 
-    // 2. If no token found
+    //  If no token found
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -20,10 +20,10 @@ export default async function authMiddleware(req, res, next) {
       });
     }
 
-    // 3. Verify token
+    // Verify token
     const decoded = jwt.verify(token, JWT_SECRET);
 
-    // 4. Fetch user
+    //  Fetch user
     const user = await User.findById(decoded.id).select("-password");
     if (!user) {
       return res.status(401).json({
@@ -32,7 +32,7 @@ export default async function authMiddleware(req, res, next) {
       });
     }
 
-    // 5. Attach user to request
+    //  Attach user to request
     req.user = user;
     next();
   } catch (error) {
