@@ -224,7 +224,7 @@ const ItemsHome = () => {
                   <div key={product.id} className={itemsHomeStyles.productCard}>
                     <div className={itemsHomeStyles.imageContainer}>
                       <img
-                        src={`${product.imageUrl}`}
+                        src={`₹{product.imageUrl}`}
                         alt={product.name}
                         className={itemsHomeStyles.productImage}
                         onError={(e) => {
@@ -244,10 +244,10 @@ const ItemsHome = () => {
                       <div className={itemsHomeStyles.priceContainer}>
                         <div>
                           <p className={itemsHomeStyles.currentPrice}>
-                            ${product.price.toFixed(2)}
+                            ₹{product.price.toFixed(2)}
                           </p>
                           <span className={itemsHomeStyles.oldPrice}>
-                            ${product.price * (1.2).toFixed(2)}
+                            ₹{product.price * (1.2).toFixed(2)}
                           </span>
                         </div>
 
