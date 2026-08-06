@@ -21,7 +21,7 @@ const Signup = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { apiError, setApiError } = useState("");
+  const [apiError, setApiError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -68,8 +68,39 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
+
+  //   try {
+  //     const res = await axios.post(
+  //       "https://rushbasket-grocery-websites-backend.onrender.com/api/user/register",
+  //       {
+  //         name: formData.name,
+  //         email: formData.email,
+  //         password: formData.password,
+  //       },
+  //       {
+  //         headers: { "Content-Type": "application/json" },
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     if (res.data.success) {
+  //       setShowToast(true);
+  //     } else {
+  //       setApiError(res.data.message || "Register failed");
+  //     }
+  //   } catch (error) {
+  //     if (error.response && error.response.data) {
+  //       setApiError(error.response.data.message);
+  //     } else {
+  //       setApiError("Server Error");
+  //     }
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!validate()) return;
 
     try {
@@ -80,15 +111,32 @@ const Signup = () => {
           email: formData.email,
           password: formData.password,
         },
-        { headers: { "Content-Type": "application/json" } }
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
       );
+
       if (res.data.success) {
+        setApiError("");
+
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          remember: false,
+        });
+
         setShowToast(true);
       } else {
-        setApiError(res.data.message || "Register failed");
+        setApiError(res.data.message || "Registration failed");
       }
     } catch (error) {
-      if (error.response && error.response.data) {
+      console.error(error);
+
+      if (error.response?.data?.message) {
         setApiError(error.response.data.message);
       } else {
         setApiError("Server Error");

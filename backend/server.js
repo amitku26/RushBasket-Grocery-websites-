@@ -24,7 +24,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
       const allowedOrigins = [
-        "http://localhost:5174",
+         "http://localhost:5174",
         "http://localhost:5173",
         "https://rushbasket-grocery-websites-backend.onrender.com",
         "https://rushbasket-grocery-websites-frontend.onrender.com",
